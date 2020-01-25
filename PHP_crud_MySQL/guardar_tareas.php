@@ -1,20 +1,23 @@
 <?php
 
-include('db.php');
+include("db.php");
 
-if (isset($_POST['save_task'])) {
-  $title = $_POST['title'];
-  $description = $_POST['description'];
-  $query = "INSERT INTO tareas(title, description) VALUES ('$title', '$description')";
-  $result = mysqli_query($conn, $query);
-  if(!$result) {
-    die("Query Failed.");
-  }
+if (isset($_POST['guardar_tarea'])){
 
-  $_SESSION['message'] = 'Task Saved Successfully';
-  $_SESSION['message_type'] = 'success';
-  header('Location: index.php');
+    $titulo = $_POST['titulo'];
+    $descripcion = $_POST['descripcion'];
+    
+    $query  = "INSERT INTO tareas(Titulo, Descripcion) VALUES ('$titulo', '$descripcion')";
+    $result = mysqli_query($conn, $query);
+    if(!$result){
+        die("Fallo la consulta");
 
+    }
+
+    $_SESSION['message'] = 'Tarea Guardada Satisfactoriamente';
+    $_SESSION['message_type'] = 'success';
+    //Para color rojo, danger
+    header("Location: index.php");
 }
 
 ?>
